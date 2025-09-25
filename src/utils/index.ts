@@ -7,9 +7,11 @@ const getSourceMap = async (url: string) => {
 }
 
 const findCodeBySourceMap = async (stackFrame: any) => {
+  console.log(stackFrame,'stackFrame')
   const sourceData = await getSourceMap(stackFrame.fileName + '.map');
   const fileContent = sourceData.data;
   console.log('fileContent', fileContent)
+
   const consumer = await new sourceMap.SourceMapConsumer(fileContent);
   const originalPosition = consumer.originalPositionFor({
     line: stackFrame.line,
