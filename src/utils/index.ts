@@ -2,12 +2,14 @@ import axios from 'axios'
 import sourceMap from 'source-map-js'
 
 const getSourceMap = async (url: string) => {
+  console.log('url', url)
   return await axios.get(url)
 }
 
 const findCodeBySourceMap = async (stackFrame: any) => {
   const sourceData = await getSourceMap(stackFrame.fileName + '.map');
   const fileContent = sourceData.data;
+  console.log('fileContent', fileContent)
   const consumer = await new sourceMap.SourceMapConsumer(fileContent);
   const originalPosition = consumer.originalPositionFor({
     line: stackFrame.line,
