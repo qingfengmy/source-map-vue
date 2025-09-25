@@ -17,6 +17,16 @@ const routes = [
     name: 'User',
     component: () => import('@/views/User.vue'),
   },
+  {
+    path: '/rrweb',
+    name: 'RRweb',
+    component: () => import('@/views/RRweb.vue'),
+  },
+  {
+    path: '/play',
+    name: 'Play',
+    component: () => import('@/views/Play.vue'),
+  },
 ]
 
 // 创建 router 实例
