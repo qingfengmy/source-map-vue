@@ -13,10 +13,12 @@ const findCodeBySourceMap = async (stackFrame: any) => {
   console.log('fileContent', fileContent)
 
   const consumer = await new sourceMap.SourceMapConsumer(fileContent);
-  const originalPosition = consumer.originalPositionFor({
+  const data = {
     line: stackFrame.lineNumber,
     column: stackFrame.columnNumber
-  });
+  };
+  console.log('data', data)
+  const originalPosition = consumer.originalPositionFor(data);
   console.log('consumer.sourceContentFor', consumer.sourceContentFor);
   console.log('originalPosition', originalPosition)
   const code = consumer.sourceContentFor(originalPosition.source)
