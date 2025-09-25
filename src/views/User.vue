@@ -14,11 +14,13 @@
         </el-upload>
       </el-form-item>
     </el-form>
+    <preview :origin="origin" />
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref, watch } from "vue";
 import sourceMap from 'source-map-js'
+import preview from './preview.vue'
 
 const formLabelWidth = "140px";
 
@@ -26,6 +28,16 @@ const form = reactive({
   stackFrame: "",
   sourceMap: "",
 });
+
+const origin = ref({
+  source: "",
+  line: 0,
+  column: 0,
+});
+
+watch(origin, (newVal) => {
+  console.log(newVal,'newVal')
+})
 
 const beforeUpload = async (file: File) => {
   console.log(file);
@@ -38,7 +50,7 @@ const beforeUpload = async (file: File) => {
     const stackFrame = JSON.parse(form.stackFrame);
     const source =  await getSource(sourceMap, stackFrame.lineNumber, stackFrame.columnNumber);
     console.log('source', source);
-
+    origin.value = source as any;
   };
   return false;
 };
@@ -58,3 +70,17 @@ const getSource = async (code: any, line: any, column: any) => {
   }
 };
 </script>
+<style>
+.error-code{
+  padding: 20px;
+  font-family: consolas, monospace;
+  word-wrap: normal;
+}
+.code-line{
+  padding:4px
+}
+.code-line.heightlight{
+  color: #fff;
+  background-color: #f22222;
+}
+</style>
