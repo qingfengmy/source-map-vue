@@ -1,0 +1,2 @@
+import{_ as s,c as a,o as l,a as u,b as o,w as r,r as d,F as m,d as n}from"./index-dxZ8PHDS.js";const f={};function _(i,e){const t=d("router-link");return l(),a(m,null,[e[2]||(e[2]=u("div",null,"Home",-1)),o(t,{to:"/about"},{default:r(()=>[...e[0]||(e[0]=[n("About",-1)])]),_:1}),o(t,{to:"/user"},{default:r(()=>[...e[1]||(e[1]=[n("User",-1)])]),_:1})],64)}const p=s(f,[["render",_]]);export{p as default};
+//# sourceMappingURL=Home-DRDzoI3g.js.map
